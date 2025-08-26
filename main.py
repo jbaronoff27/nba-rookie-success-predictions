@@ -78,23 +78,3 @@ results = pd.DataFrame({
     'Predicted_Success_Prob': success_prob,
     'Actual_Success': y_test.reset_index(drop=True)
 })
-
-# Sort by predicted probability
-results = pd.DataFrame({
-    'Player': names_test.reset_index(drop=True),
-    'Predicted_Success_Prob': success_prob,
-    'Actual_Success': y_test.reset_index(drop=True)
-})
-
-results = results.sort_values(by='Predicted_Success_Prob', ascending=True)
-
-print(results.head(20))
-
-import joblib
-from google.colab import files
-
-# --- Save model and scaler to disk ---
-joblib.dump(model, 'nba_logistic_model.pkl')
-joblib.dump(scaler, 'nba_scaler.pkl')
-
-print("✅ Saved model and scaler as 'nba_logistic_model.pkl' and 'nba_scaler.pkl'")
